@@ -94,6 +94,7 @@ class ProductCategoryCreateView(LoginRequiredMixin, CreateView):
 
 from django.db.models import F
 
+
 class ProductCategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = ProductCategory
     template_name = "adminapp/category_update.html"
@@ -195,9 +196,11 @@ def product_delete(request, pk):
     content = {"title": title, "product_to_delete": product, "media_url": settings.MEDIA_URL}
     return render(request, "adminapp/product_delete.html", content)
 
+
 from django.db import connection
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+
 
 def db_profile_by_type(prefix, type, queries):
     update_queries = list(filter(lambda x: type in x["sql"], queries))
